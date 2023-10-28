@@ -36,10 +36,10 @@ class _DateAppState extends State<DateApp> {
   String second = "";
   String minute = "";
   String welcome = "";
+  String pmORam = "";
 
-
-    //  فنكشون بدخلها تيمر يعمل الي مالانهاية وداخل التايمر قيمة كل متغير بالوقت الحالي 
-    // والوقت الحالي له العديد من القيم منها اليوم والساعة والثانية والشهر والدقيقة والسنة
+  //  فنكشون بدخلها تيمر يعمل الي مالانهاية وداخل التايمر قيمة كل متغير بالوقت الحالي
+  // والوقت الحالي له العديد من القيم منها اليوم والساعة والثانية والشهر والدقيقة والسنة
   changeYear() {
     Timer.periodic(Duration(seconds: 1), (timer) {
       setState(() {
@@ -53,8 +53,6 @@ class _DateAppState extends State<DateApp> {
       });
     });
   }
-
-
 
   //  فنكشون بدخلها تيمر يعمل الي مالانهاية وداخل اتايمر سويتش لتغير اليوم من رقم الي اسم
   changeweekday() {
@@ -96,7 +94,6 @@ class _DateAppState extends State<DateApp> {
       });
     });
   }
-
 
   //  فنكشون بدخلها تيمر يعمل الي مالانهاية وداخل اتايمر سويتش لتغير الشهر من رقم الي اسم
   changemonth() {
@@ -159,7 +156,18 @@ class _DateAppState extends State<DateApp> {
     });
   }
 
-
+//  فنكشون بدخلها تيمر يعمل الي مالانهاية بداخلها شرط  لوكانت  الساعة اكبر من 12 خليها مسائي ولو اصغر خليها صباحي
+  changepmORam() {
+    Timer.periodic(Duration(seconds: 1), (timer) {
+      setState(() {
+        if (hour > 12) {
+          pmORam = "pm";
+        } else {
+          pmORam = "am";
+        }
+      });
+    });
+  }
 
   //  فنكشون بدخلها تيمر يعمل الي مالانهاية بداخلها شرط  للطرح من عدد السعات 12 ساعه
   changehour() {
@@ -171,7 +179,8 @@ class _DateAppState extends State<DateApp> {
       });
     });
   }
-  //  فونكشون بداخلها تيمر يعمل مرة وحده فقط 
+
+  //  فونكشون بداخلها تيمر يعمل مرة وحده فقط
   changewelcome() {
     Timer(Duration(seconds: 10), () {
       welcome = "😂😂😂😂😂😂";
@@ -179,14 +188,15 @@ class _DateAppState extends State<DateApp> {
   }
 
   @override
-  
+
   //  لتشغيل الفونكشوت تلقائي عند فتح البرنامج
-  void initState() {    
+  void initState() {
     // TODO: implement initState
     super.initState();
     changeYear();
     changemonth();
     changeweekday();
+    changepmORam();
     changehour();
     changewelcome();
   }
@@ -228,7 +238,7 @@ class _DateAppState extends State<DateApp> {
               height: 15,
             ),
             Text(
-              "${hour.toString().padLeft(2, "0")} : ${minute.padLeft(2, "0")} : ${second.padLeft(2, "0")}",
+              "${hour.toString().padLeft(2, "0")} : ${minute.padLeft(2, "0")} : ${second.padLeft(2, "0")} $pmORam",
               style: TextStyle(
                   color: Colors.white,
                   fontSize: 25,
