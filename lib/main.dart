@@ -161,7 +161,7 @@ class _DateAppState extends State<DateApp> {
 
 
 
-  //  فنكشون بدخلها تيمر يعمل الي مالانهاية للطرح من عدد السعات 12 ساعه
+  //  فنكشون بدخلها تيمر يعمل الي مالانهاية بداخلها شرط  للطرح من عدد السعات 12 ساعه
   changehour() {
     Timer.periodic(Duration(seconds: 1), (timer) {
       setState(() {
@@ -174,7 +174,7 @@ class _DateAppState extends State<DateApp> {
   //  فونكشون بداخلها تيمر يعمل مرة وحده فقط 
   changewelcome() {
     Timer(Duration(seconds: 10), () {
-      welcome = "welcome";
+      welcome = "😂😂😂😂😂😂";
     });
   }
 
